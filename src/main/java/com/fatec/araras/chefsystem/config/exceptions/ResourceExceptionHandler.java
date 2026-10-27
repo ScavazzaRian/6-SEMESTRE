@@ -46,7 +46,7 @@ public class ResourceExceptionHandler {
         String mensagem = erro.getDefaultMessage();
         String mensagemFinal = campo + " " + mensagem;
 
-        StandardError standardError = new StandardError(Instant.now(), status.value(), "Produto já cadastrado", mensagemFinal, request.getRequestURI());
+        StandardError standardError = new StandardError(Instant.now(), status.value(), "Valores informados estão incorretos", mensagemFinal, request.getRequestURI());
         return ResponseEntity.status(status).body(standardError);
     }
 }
