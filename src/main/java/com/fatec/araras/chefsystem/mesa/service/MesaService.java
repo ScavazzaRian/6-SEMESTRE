@@ -31,4 +31,11 @@ public class MesaService {
         Mesa mesa = new Mesa(null, obj.getNumero(), obj.getQuantidade());
         return repository.save(mesa);
     }
+
+    public void delete(Long id){
+        if(!repository.existsById(id)){
+            throw new ResourceNotFoundException(id);
+        }
+        repository.deleteById(id);
+    }
 }

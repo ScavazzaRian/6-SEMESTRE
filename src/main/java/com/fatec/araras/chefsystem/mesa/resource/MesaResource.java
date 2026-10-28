@@ -6,7 +6,6 @@ import com.fatec.araras.chefsystem.mesa.entities.Mesa;
 import com.fatec.araras.chefsystem.mesa.service.MesaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -39,5 +38,11 @@ public class MesaResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(mesa.getId()).toUri();
         MesaResponseDTO val = new MesaResponseDTO(mesa);
         return ResponseEntity.created(uri).body(val);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
