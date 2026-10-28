@@ -1,5 +1,6 @@
 package com.fatec.araras.chefsystem.produtos.entities;
 
+import com.fatec.araras.chefsystem.produtos.entities.enums.CategoriaProduto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,4 +25,7 @@ public class Produto {
     @Column(name = "preco_venda", precision = 10, scale = 2, nullable = false)
     private BigDecimal precoVenda;
     private int quantidade;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "categoria", nullable = false)
+    private CategoriaProduto categoria;
 }

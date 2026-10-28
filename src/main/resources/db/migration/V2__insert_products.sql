@@ -1,12 +1,9 @@
-INSERT INTO produtos
-(nome, preco_compra, preco_venda, quantidade)
+INSERT INTO produtos (
+    nome, preco_venda, preco_compra, quantidade, categoria
+)
 VALUES
-    ('Coca-Cola Lata',    3.50,  6.00,  50),
-    ('Pizza Calabresa',  20.00, 45.00,  15),
-    ('Lasanha Bolonhesa',15.00, 32.00,  10),
-    ('Brigadeiro',        1.00,  3.50, 100),
-    ('Água Mineral',      1.50,  4.00,  60),
-    ('Suco Natural',      3.00,  8.00,  25),
-    ('Pizza Doce',       18.00, 42.00,  10),
-    ('Pastel de Carne',   4.00, 10.00,  30),
-    ('Torta de Limão',    5.00, 12.00,  20);
+    ('Suco de laranja', 12.00, 4.00, 30, 'BEBIDA'),
+    ('Porcao de batata', 25.00, 10.00, 20, 'ENTRADA'),
+    ('Prato executivo', 32.00, 14.00, 15, 'PRATO_PRINCIPAL'),
+    ('Pudim', 10.00, 3.50, 12, 'SOBREMESA'),
+    ('Molho extra', 3.00, 1.00, 40, 'OUTROS');

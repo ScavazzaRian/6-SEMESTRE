@@ -29,7 +29,7 @@ public class ProdutoService {
     }
 
     public Produto insert(ProdutoRequestDTO obj){
-        Produto produto = new Produto(null, obj.getNome(), obj.getPrecoCompra(), obj.getPrecoVenda(), obj.getQuantidade());
+        Produto produto = new Produto(null, obj.getNome(), obj.getPrecoCompra(), obj.getPrecoVenda(), obj.getQuantidade(), obj.getCategoria());
         return repository.save(produto);
     }
 
@@ -52,5 +52,6 @@ public class ProdutoService {
         entity.setPrecoCompra(obj.getPrecoCompra());
         entity.setPrecoVenda(obj.getPrecoVenda());
         entity.setQuantidade(obj.getQuantidade());
+        entity.setCategoria(obj.getCategoria());
     }
 }

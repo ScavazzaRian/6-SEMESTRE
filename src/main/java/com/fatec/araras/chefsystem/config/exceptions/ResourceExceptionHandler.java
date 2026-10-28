@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -49,4 +50,15 @@ public class ResourceExceptionHandler {
         StandardError standardError = new StandardError(Instant.now(), status.value(), "Valores informados estão incorretos", mensagemFinal, request.getRequestURI());
         return ResponseEntity.status(status).body(standardError);
     }
+
+        @ExceptionHandler(HttpMessageNotReadableException.class)
+        public ResponseEntity<StandardError> jsonInvalid(
+                HttpMessageNotReadableException e,
+                HttpServletRequest request
+        ){
+            HttpStatus status = HttpStatus.BAD_REQUEST;
+
+            StandardError standardError = new StandardError(Instant.now(), status.value(), "Os valores não podem ser vazios.", "Corpo da requisição está inválido", request.getRequestURI());
+            return ResponseEntity.status(status).body(standardError);
+        }
 }

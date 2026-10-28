@@ -1,5 +1,6 @@
 package com.fatec.araras.chefsystem.produtos.dto;
 
+import com.fatec.araras.chefsystem.produtos.entities.enums.CategoriaProduto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -28,5 +29,9 @@ public class ProdutoRequestDTO {
     private BigDecimal precoCompra;
 
     @PositiveOrZero
+    @NotNull
     private Integer quantidade;
+
+    @NotNull
+    private CategoriaProduto categoria;
 }
