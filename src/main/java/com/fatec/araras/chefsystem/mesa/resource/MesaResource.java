@@ -45,4 +45,11 @@ public class MesaResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<MesaResponseDTO> update(@Valid @RequestBody MesaRequestDTO obj, @PathVariable Long id){
+        Mesa mesa = service.update(obj, id);
+        MesaResponseDTO val = new MesaResponseDTO(mesa);
+        return ResponseEntity.ok().body(val);
+    }
 }

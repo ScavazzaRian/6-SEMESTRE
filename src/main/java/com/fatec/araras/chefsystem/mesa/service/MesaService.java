@@ -38,4 +38,15 @@ public class MesaService {
         }
         repository.deleteById(id);
     }
+
+    public Mesa update(MesaRequestDTO obj, Long id){
+        Mesa entity = repository.getReferenceById(id);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(Mesa entity, MesaRequestDTO obj) {
+        entity.setNumero(obj.getNumero());
+        entity.setQuantidade(obj.getQuantidade());
+    }
 }
