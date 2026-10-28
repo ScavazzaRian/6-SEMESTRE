@@ -1,6 +1,7 @@
 package com.fatec.araras.chefsystem.mesa.service;
 
 import com.fatec.araras.chefsystem.config.exceptions.ResourceNotFoundException;
+import com.fatec.araras.chefsystem.mesa.dto.MesaRequestDTO;
 import com.fatec.araras.chefsystem.mesa.dto.MesaResponseDTO;
 import com.fatec.araras.chefsystem.mesa.entities.Mesa;
 import com.fatec.araras.chefsystem.mesa.repository.MesaRepository;
@@ -24,5 +25,10 @@ public class MesaService {
     public MesaResponseDTO findById(Long id){
         Mesa mesa = repository.findById(id).orElseThrow(()->new ResourceNotFoundException(id));
         return new MesaResponseDTO(mesa);
+    }
+
+    public Mesa insert(MesaRequestDTO obj){
+        Mesa mesa = new Mesa(null, obj.getNumero(), obj.getQuantidade());
+        return repository.save(mesa);
     }
 }

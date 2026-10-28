@@ -1,14 +1,17 @@
 package com.fatec.araras.chefsystem.mesa.resource;
 
+import com.fatec.araras.chefsystem.mesa.dto.MesaRequestDTO;
 import com.fatec.araras.chefsystem.mesa.dto.MesaResponseDTO;
+import com.fatec.araras.chefsystem.mesa.entities.Mesa;
 import com.fatec.araras.chefsystem.mesa.service.MesaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -28,5 +31,13 @@ public class MesaResource {
     public ResponseEntity<MesaResponseDTO> findById(@PathVariable Long id){
         MesaResponseDTO mesa = service.findById(id);
         return ResponseEntity.ok().body(mesa);
+    }
+
+    @PostMapping
+    public ResponseEntity<MesaResponseDTO> insert(@Valid @RequestBody MesaRequestDTO obj){
+        Mesa mesa = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(mesa.getId()).toUri();
+        MesaResponseDTO val = new MesaResponseDTO(mesa);
+        return ResponseEntity.created(uri).body(val);
     }
 }
