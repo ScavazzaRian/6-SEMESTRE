@@ -1,9 +1,9 @@
-package com.fatec.araras.chefsystem.produtos.resources;
+package com.fatec.araras.chefsystem.produto.resources;
 
-import com.fatec.araras.chefsystem.produtos.dto.ProdutoRequestDTO;
-import com.fatec.araras.chefsystem.produtos.dto.ProdutoResponseDTO;
-import com.fatec.araras.chefsystem.produtos.entities.Produto;
-import com.fatec.araras.chefsystem.produtos.service.ProdutoService;
+import com.fatec.araras.chefsystem.produto.dto.ProdutoRequestDTO;
+import com.fatec.araras.chefsystem.produto.dto.ProdutoResponseDTO;
+import com.fatec.araras.chefsystem.produto.entities.Produto;
+import com.fatec.araras.chefsystem.produto.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

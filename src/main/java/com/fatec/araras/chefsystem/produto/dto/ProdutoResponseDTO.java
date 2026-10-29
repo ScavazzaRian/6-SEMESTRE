@@ -1,7 +1,7 @@
-package com.fatec.araras.chefsystem.produtos.dto;
+package com.fatec.araras.chefsystem.produto.dto;
 
-import com.fatec.araras.chefsystem.produtos.entities.Produto;
-import com.fatec.araras.chefsystem.produtos.entities.enums.CategoriaProduto;
+import com.fatec.araras.chefsystem.produto.entities.Produto;
+import com.fatec.araras.chefsystem.produto.entities.enums.CategoriaProduto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

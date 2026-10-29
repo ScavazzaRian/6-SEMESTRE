@@ -1,10 +1,10 @@
-package com.fatec.araras.chefsystem.produtos.service;
+package com.fatec.araras.chefsystem.produto.service;
 
 import com.fatec.araras.chefsystem.config.exceptions.ResourceNotFoundException;
-import com.fatec.araras.chefsystem.produtos.dto.ProdutoRequestDTO;
-import com.fatec.araras.chefsystem.produtos.dto.ProdutoResponseDTO;
-import com.fatec.araras.chefsystem.produtos.entities.Produto;
-import com.fatec.araras.chefsystem.produtos.repositories.ProdutoRepository;
+import com.fatec.araras.chefsystem.produto.dto.ProdutoRequestDTO;
+import com.fatec.araras.chefsystem.produto.dto.ProdutoResponseDTO;
+import com.fatec.araras.chefsystem.produto.entities.Produto;
+import com.fatec.araras.chefsystem.produto.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

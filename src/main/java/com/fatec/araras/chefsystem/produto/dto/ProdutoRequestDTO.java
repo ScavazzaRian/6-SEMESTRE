@@ -1,6 +1,6 @@
-package com.fatec.araras.chefsystem.produtos.dto;
+package com.fatec.araras.chefsystem.produto.dto;
 
-import com.fatec.araras.chefsystem.produtos.entities.enums.CategoriaProduto;
+import com.fatec.araras.chefsystem.produto.entities.enums.CategoriaProduto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

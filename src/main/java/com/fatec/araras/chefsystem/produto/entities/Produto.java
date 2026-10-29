@@ -1,6 +1,6 @@
-package com.fatec.araras.chefsystem.produtos.entities;
+package com.fatec.araras.chefsystem.produto.entities;
 
-import com.fatec.araras.chefsystem.produtos.entities.enums.CategoriaProduto;
+import com.fatec.araras.chefsystem.produto.entities.enums.CategoriaProduto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
