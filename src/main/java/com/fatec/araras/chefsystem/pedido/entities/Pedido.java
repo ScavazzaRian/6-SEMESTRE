@@ -24,6 +24,6 @@ public class Pedido {
     private Mesa mesa;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(name = "status", nullable = false, length = 20)
     private StatusPedido statusPedido = StatusPedido.ABERTO;
 }
