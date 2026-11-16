@@ -1,0 +1,49 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/chefsystem
+      DB_USER: chefsystem
+      DB_PASSWORD: ${DB_PASSWORD:-chefsystem-local}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: chefsystem
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-chefsystem-local}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: chefsystem
+      POSTGRES_USER: chefsystem
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-chefsystem-local}
+    volumes:
+      - dados-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chefsystem -d chefsystem"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  rabbitmq:
+    image: rabbitmq:4-management
+    hostname: chefsystem-rabbitmq
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: chefsystem
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-chefsystem-local}
+    volumes:
+      - dados-rabbitmq:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 10s
+      retries: 15
+volumes:
+  dados-postgres:
+  dados-rabbitmq:
