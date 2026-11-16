@@ -7,6 +7,7 @@ import com.fatec.araras.chefsystem.produto.entities.Produto;
 import com.fatec.araras.chefsystem.produto.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,8 +42,9 @@ public class ProdutoService {
         repository.deleteById(id);
     }
 
+    @Transactional
     public Produto update(Long id, ProdutoRequestDTO obj){
-        Produto entity = repository.getReferenceById(id);
+        Produto entity = repository.buscarParaAtualizar(id).orElseThrow(() -> new ResourceNotFoundException(id));
         updateData(entity, obj);
         return repository.save(entity);
     }

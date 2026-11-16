@@ -1,19 +1,14 @@
 package com.fatec.araras.chefsystem.pedido.dto;
 
-import com.fatec.araras.chefsystem.pedido.entities.Pedido;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Size;
+import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class PedidoRequestDTO {
-    @NotNull(message = "A mesa é obrigatória")
-    @Positive(message = "O ID da mesa deve ser positivo")
-    private Long mesaId;
-}
+public record PedidoRequestDTO(
+        @Schema(description = "ID da mesa", example = "1") @NotNull @Positive Long mesaId,
+        @NotEmpty @Size(max = 100) List<@NotNull @Valid ItemPedidoRequestDTO> itens
+) {}

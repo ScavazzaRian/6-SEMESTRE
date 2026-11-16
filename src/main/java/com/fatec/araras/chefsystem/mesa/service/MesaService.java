@@ -7,6 +7,7 @@ import com.fatec.araras.chefsystem.mesa.entities.Mesa;
 import com.fatec.araras.chefsystem.mesa.repository.MesaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,8 +40,9 @@ public class MesaService {
         repository.deleteById(id);
     }
 
+    @Transactional
     public Mesa update(MesaRequestDTO obj, Long id){
-        Mesa entity = repository.getReferenceById(id);
+        Mesa entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         updateData(entity, obj);
         return repository.save(entity);
     }

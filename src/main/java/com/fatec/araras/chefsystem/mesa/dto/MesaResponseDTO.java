@@ -11,10 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MesaResponseDTO {
+    private Long id;
     private Integer numero;
     private Integer quantidade;
 
     public MesaResponseDTO(Mesa mesa){
+        id = mesa.getId();
         numero = mesa.getNumero();
         quantidade = mesa.getQuantidade();
     }

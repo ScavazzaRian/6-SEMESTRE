@@ -20,9 +20,9 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @Column(name = "preco_compra", precision = 10, scale = 2, nullable = false)
+    @Column(name = "preco_compra", precision = 12, scale = 2, nullable = false)
     private BigDecimal precoCompra;
-    @Column(name = "preco_venda", precision = 10, scale = 2, nullable = false)
+    @Column(name = "preco_venda", precision = 12, scale = 2, nullable = false)
     private BigDecimal precoVenda;
     private int quantidade;
     @Enumerated(EnumType.STRING)

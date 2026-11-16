@@ -25,6 +25,12 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(standardError);
     }
 
+    @ExceptionHandler(ConflitoException.class)
+    public ResponseEntity<StandardError> conflito(ConflitoException e, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new StandardError(
+                Instant.now(), 409, "Conflito", e.getMessage(), request.getRequestURI()));
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<StandardError> database(
             HttpServletRequest request
@@ -42,10 +48,10 @@ public class ResourceExceptionHandler {
     ){
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        FieldError erro = e.getBindingResult().getFieldErrors().getFirst();
-        String campo = erro.getField();
-        String mensagem = erro.getDefaultMessage();
-        String mensagemFinal = campo + " " + mensagem;
+        String mensagemFinal = e.getBindingResult().getAllErrors().stream()
+                .map(erro -> (erro instanceof FieldError campo ? campo.getField() + ": " : "")
+                        + erro.getDefaultMessage())
+                .collect(java.util.stream.Collectors.joining("; "));
 
         StandardError standardError = new StandardError(Instant.now(), status.value(), "Valores informados estão incorretos", mensagemFinal, request.getRequestURI());
         return ResponseEntity.status(status).body(standardError);
@@ -58,7 +64,7 @@ public class ResourceExceptionHandler {
         ){
             HttpStatus status = HttpStatus.BAD_REQUEST;
 
-            StandardError standardError = new StandardError(Instant.now(), status.value(), "Os valores não podem ser vazios.", "Corpo da requisição está inválido", request.getRequestURI());
+            StandardError standardError = new StandardError(Instant.now(), status.value(), "Requisição inválida", "Corpo da requisição inválido ou valor não reconhecido", request.getRequestURI());
             return ResponseEntity.status(status).body(standardError);
         }
 }
